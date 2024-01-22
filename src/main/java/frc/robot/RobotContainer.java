@@ -15,6 +15,8 @@ import frc.robot.subsystems.intake_single_moter;
 import frc.robot.commands.intake_single_motor_command;
 import frc.robot.subsystems.double_intake_motor;
 import frc.robot.commands.intake_double_motor_comand;
+import frc.robot.commands.stop1;
+import frc.robot.commands.stop2;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -29,6 +31,8 @@ public class RobotContainer {
   private final intake_single_motor_command m_intake_motor_command = new intake_single_motor_command(m_Intake_single_moter);
 private final double_intake_motor m_Intake_double_moter = new double_intake_motor();
   private final intake_double_motor_comand m_double_intake_motor_command = new intake_double_motor_comand(m_Intake_double_moter);
+  private final stop1 m_stop1 = new stop1(m_Intake_single_moter);
+  private final stop2 m_stop2 = new stop2(m_Intake_double_moter);
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -54,6 +58,8 @@ private final double_intake_motor m_Intake_double_moter = new double_intake_moto
 
     m_driverController.button(1).onTrue(m_intake_motor_command);
     m_driverController.button(2).onTrue(m_double_intake_motor_command);
+    m_driverController.button(1).onFalse(m_stop1);
+    m_driverController.button(2).onFalse(m_stop2);
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));

@@ -9,14 +9,21 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.intake_single_moter;
 
 public class intake_single_motor_command extends Command {
+
+  private final intake_single_moter m_1Moter;
   public intake_single_motor_command(intake_single_moter subsystem) {
-    addRequirements(subsystem);
+    m_1Moter = subsystem;
+    addRequirements(m_1Moter);
+   
+    
 
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_1Moter.spin1();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

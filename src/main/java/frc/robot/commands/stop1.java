@@ -5,34 +5,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.double_intake_motor;
+import frc.robot.subsystems.intake_single_moter;
 
-public class intake_double_motor_comand extends Command {
-  /** Creates a new intake_double_motor_comand. */
- // private final double_intake_motor m_double_motor;
- private final double_intake_motor m_2Motor;
-
-  public intake_double_motor_comand(double_intake_motor subsystem) {
-   m_2Motor = subsystem;
-    addRequirements(m_2Motor);
-
-
-
+public class stop1 extends Command {
+  /** Creates a new stop1. */
+  private final intake_single_moter m_1Moter;
+  public stop1(intake_single_moter subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_1Moter = subsystem;
+    addRequirements(m_1Moter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_2Motor.spin2();
-    
+    m_1Moter.stopSingle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
